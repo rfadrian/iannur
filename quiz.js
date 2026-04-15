@@ -245,6 +245,7 @@ function showResults() {
   else matchId = "char-autumn";
 
   document.getElementById(matchId).classList.remove("hidden");
+  createHeartBurst();
 
   // Animated score number
   finalScoreNum.textContent = "0";
@@ -307,3 +308,37 @@ btnStart.addEventListener("click", () => {
 
 btnNext.addEventListener("click", goNext);
 btnRestart.addEventListener("click", restart);
+
+/* ==============================
+   HEART BURST EFFECT
+   ============================== */
+function createHeartBurst() {
+  const container = document.body;
+  const count = 30;
+  const hearts = ["❤️", "💖", "✨", "💕", "💘"];
+
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    
+    // Random position and timing
+    const startX = Math.random() * 100; // 0 to 100vw
+    const duration = 3 + Math.random() * 3; // 3 to 6s
+    const delay = Math.random() * 2; // 0 to 2s
+    const size = 1 + Math.random() * 2; // 1 to 3rem
+
+    heart.style.left = `${startX}vw`;
+    heart.style.animationDuration = `${duration}s`;
+    heart.style.animationDelay = `${delay}s`;
+    heart.style.fontSize = `${size}rem`;
+
+    container.appendChild(heart);
+
+    // Remove after animation
+    setTimeout(() => {
+      heart.remove();
+    }, (duration + delay) * 1000);
+  }
+}
+
