@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizMaster — Test Your Knowledge</title>
+  <meta name="description" content="An interactive quiz with scoring and a detailed results page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== INTRO SCREEN ===== -->
+  <div id="screen-intro" class="screen active">
+    <div class="intro-card">
+      <div class="brain-icon">😍</div>
+      <h1> El Tinder de Iannur</h1>
+      <p class="subtitle"> El Tinder de Iannur</p>
+      <div class="meta-row">
+        <span>Como ya sabéis, Autumn cometió el error de dejar su vida amorosa en manos de una Inteligencia
+          Artificial... ¡y ahora os toca a vosotros! Así que os voy a pedir que saquéis el teléfono móvil para anotar
+          porque Iannur ha abierto su base de datos y va a analizar todas vuestras respuestas para encontraros vuestro
+          match ideal en Kramanta. Cada opción tiene una puntuación, así que… ¡no hagáis trampas!</span>
+      </div>
+      <button id="btn-start" class="btn-primary">Empezar</button>
+    </div>
+  </div>
+
+  <!-- ===== QUIZ SCREEN ===== -->
+  <div id="screen-quiz" class="screen">
+    <div class="quiz-wrapper">
+      <div class="quiz-header">
+        <div class="progress-info">
+          <span id="question-counter">Pregunta 1 de 5</span>
+          <span id="score-live">Score: 0</span>
+        </div>
+        <div class="progress-bar-track">
+          <div id="progress-bar" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <div class="question-badge" id="question-badge">Q1</div>
+        <h2 id="question-text">Loading question...</h2>
+        <div id="options-grid" class="options-grid"></div>
+        <div id="feedback-box" class="feedback-box hidden">
+          <span id="feedback-icon"></span>
+          <span id="feedback-text"></span>
+        </div>
+        <button id="btn-next" class="btn-primary hidden">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULTS SCREEN ===== -->
+  <div id="screen-results" class="screen">
+    <div class="results-wrapper">
+      <div class="results-card">
+        <div id="result-emoji" class="result-emoji">🎉</div>
+        <h2 id="result-title">Aquí está tu match</h2>
+        <p id="result-subtitle" class="result-subtitle"></p>
+
+
+        <div id="characters" class="score-characters">
+
+          <!-- score >= 24 -->
+          <div id="char-lurya" class="character-card hidden">
+            <img src="images/lurya.jpg" alt="Lurya" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Lurya</h3>
+              <p class="char-desc">La diosa misteriosa. No es una diosa de verdad, pero como si lo fuera. La gente
+                tropieza al verla allá por donde pasa. Misteriosa, astuta e intensa. La nueva novia de Rhael causa furor
+                y temor a partes iguales. Si estás aquí, es que igual tienes un lado oscuro... ;)</p>
+            </div>
+          </div>
+
+          <!-- score >= 22 -->
+          <div id="char-rhael" class="character-card hidden">
+            <img src="images/rhael.jpg" alt="Rhael" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Rhael</h3>
+              <p class="char-desc">El ángel moralmente gris. Altruista y siempre dispuesto a echar una mano. De cuerpo
+                esculpido y ojos del color de las nebulosas. Voluble como él solo, es tan luminoso que tiende a cegarse
+                y a meter la pata mucho más de lo que cabría esperar. Un pelín infiel.</p>
+            </div>
+          </div>
+
+          <!-- score >= 19 -->
+          <div id="char-sigmus" class="character-card hidden">
+            <img src="images/sigmus.jpg" alt="Sigmus" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Sigmus</h3>
+              <p class="char-desc">El oráculo anacrónico. Vas a necesitar paciencia con él... especialmente si no eres
+                amante de las rimas y metáforas, porque le cuesta horrores hablar como una persona normal. Tal vez,
+                porque no lo es. Como habitante eterno del plano temporal, conversar con él es cuanto menos...
+                interesante.</p>
+            </div>
+          </div>
+
+          <!-- score >= 16 -->
+          <div id="char-rinna" class="character-card hidden">
+            <img src="images/rinna.jpg" alt="Rinna" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Rinna</h3>
+              <p class="char-desc">La dragona cambiaformas. ¿Dragona? Pero si parece humana... Que no te engañen esos
+                ojitos azules que, en su forma original, esta criatura te puede despedazar en cuestión de segundos.
+                Curiosa por naturaleza y amante de las croquetas, puede ser una potente aliada.</p>
+            </div>
+          </div>
+
+          <!-- score >= 14 -->
+          <div id="char-yixa" class="character-card hidden">
+            <img src="images/yixa.jpg" alt="Yixa" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Yixa</h3>
+              <p class="char-desc">La biomaga idol. Uña y carne con Autumn, hermana postiza. Su pasión es la naturaleza
+                y aunque sus pintas de Ariana Grande mágica pueden confundir, tiene un coco que muchos querrían. Eso sí,
+                no le pidas que te cocine si no quieres acabar en el hospital.</p>
+            </div>
+          </div>
+
+          <!-- score >= 11 -->
+          <div id="char-ciaran" class="character-card hidden">
+            <img src="images/ciaran.jpg" alt="Ciaran" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Ciaran</h3>
+              <p class="char-desc">El fantasma amnésico. Cargante como él solo. Todo lo que tiene de etéreo, lo tiene
+                también de descarado, divertido y romántico. Una mezcla entre Aladdín, Flynn Raider y Naveen... pero con
+                algo más de sentido común. Para qué engañarnos, sería una green flag con patas... si tuviera cuerpo.</p>
+            </div>
+          </div>
+
+          <!-- score >= 8 -->
+          <div id="char-keriac" class="character-card hidden">
+            <img src="images/keriac.jpg" alt="Keriac" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Keriac</h3>
+              <p class="char-desc">El semidiós sin corazón. No, no es un decir. Tiene un corazón de papel maché porque
+                el de verdad lo perdió en una apuesta con minotauros. ¡Deidades! No hay quién las entienda. ¿Te dejarás
+                seducir por su labia y su personalidad 100% ligona?</p>
+            </div>
+          </div>
+
+          <!-- score < 8 -->
+          <div id="char-autumn" class="character-card hidden">
+            <img src="images/autumn.jpg" alt="Autumn" class="char-photo" />
+            <div class="char-info">
+              <h3 class="char-name">Autumn</h3>
+              <p class="char-desc">La bruja protagonista. Cabezota, impulsiva y necesita con urgencia una pequeña
+                colleja para empezar a creer en sí misma. Puede interactuar con espíritus y, si la cabreas, igual te
+                hace explotar. Literalmente. Eso sí, si la pillas de buenas... muy maja..</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="score-display">
+          <div class="score-circle">
+            <svg viewBox="0 0 120 120" class="circle-svg">
+              <circle cx="60" cy="60" r="52" class="circle-bg" />
+              <circle cx="60" cy="60" r="52" class="circle-prog" id="circle-prog" />
+            </svg>
+            <div class="score-text-inner">
+              <span id="final-score-num">0</span>
+            </div>
+          </div>
+        </div>
+        <button id="btn-restart" class="btn-primary">Vuelve a probar 🔄</button>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="quiz.js"></script>
+</body>
+
+</html>
