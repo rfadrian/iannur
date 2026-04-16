@@ -625,7 +625,7 @@ body {
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 1.25rem;
+  gap: 10px;
 }
 
 .social-link {
