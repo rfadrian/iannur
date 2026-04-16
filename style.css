@@ -156,6 +156,10 @@ body {
   transform: translateY(0);
 }
 
+.btn-restart {
+  margin-top: 3rem;
+}
+
 /* ===== QUIZ SCREEN ===== */
 .quiz-wrapper {
   width: 100%;
